@@ -9,7 +9,11 @@
     "solar": "",
     "lunar": ""
   },
-  "todayMood": null,
+  "todayMood": {
+    "key": "miss",
+    "label": "想念",
+    "icon": "🥺"
+  },
   "diaries": [],
   "wishlist": []
 }
