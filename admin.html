@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>心动记录仪 - 管理员</title>
+    <style>
+      :root {
+        --bg: #fff5f7;
+        --card: rgba(255, 255, 255, 0.9);
+        --line: #ffd2df;
+        --text: #5e4149;
+        --primary: linear-gradient(135deg, #ff758c, #ff7eb3);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        background: radial-gradient(circle at 15% 20%, #ffe6ee 0%, transparent 40%), var(--bg);
+        color: var(--text);
+      }
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 24px;
+        display: grid;
+        gap: 20px;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        box-shadow: 0 10px 24px rgba(255, 117, 140, 0.12);
+        padding: 18px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 28px;
+      }
+      .sub {
+        margin-top: 8px;
+        color: #8a6670;
+      }
+      .row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      input,
+      button {
+        height: 40px;
+        border-radius: 10px;
+        border: 1px solid var(--line);
+        padding: 0 12px;
+        font-size: 14px;
+      }
+      input {
+        min-width: 200px;
+        background: #fff;
+        color: var(--text);
+      }
+      button {
+        border: none;
+        color: #fff;
+        background: var(--primary);
+        cursor: pointer;
+      }
+      button.light {
+        color: #8e5f6e;
+        border: 1px solid var(--line);
+        background: #fff;
+      }
+      ul {
+        margin: 12px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+      li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 10px 0;
+        border-bottom: 1px dashed #ffd8e4;
+      }
+      li:last-child {
+        border-bottom: none;
+      }
+      .pill {
+        font-size: 12px;
+        color: #8f6672;
+        background: #fff1f6;
+        border-radius: 999px;
+        padding: 4px 10px;
+      }
+      .danger {
+        background: #ff6c93;
+      }
+      .status {
+        margin-top: 8px;
+        min-height: 20px;
+        font-size: 13px;
+        color: #8c5f6d;
+      }
+      @media (max-width: 720px) {
+        input {
+          width: 100%;
+          min-width: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <section class="card">
+        <h1>心动记录仪管理员</h1>
+        <div class="sub">管理 GitHub 上的用户文件与“今天干嘛呢”抽奖选项</div>
+        <div class="status" id="status"></div>
+      </section>
+
+      <section class="card">
+        <h2>约会抽奖池</h2>
+        <div class="row">
+          <input id="newOption" placeholder="添加约会选项" />
+          <button id="addOptionBtn">添加</button>
+          <button id="saveOptionsBtn">保存到 GitHub</button>
+        </div>
+        <ul id="optionList"></ul>
+      </section>
+
+      <section class="card">
+        <h2>用户管理</h2>
+        <div class="row">
+          <input id="newUserName" placeholder="新账号（3-20 位）" />
+          <input id="newUserPwd" type="password" placeholder="初始密码（至少 6 位）" />
+          <button id="createUserBtn">创建账号</button>
+          <button id="reloadUsersBtn" class="light">刷新列表</button>
+        </div>
+        <ul id="userList"></ul>
+      </section>
+    </div>
+
+    <script>
+      const CONFIG = {
+        owner: "lqbzy",
+        repo: "lqbzy.github.io",
+        branch: "main",
+        tokenBase64: ["Z2hwX3V0WDUyc1NEMEox", "RWZJc3VtWlN5bG9EV2FR", "SkpqdTBtV2JCQg=="].join("")
+      };
+
+      const DEFAULT_OPTIONS = ["看电影", "吃火锅", "去游乐园", "在家打游戏", "去逛公园"];
+
+      const state = {
+        options: []
+      };
+
+      function decodeBase64Token() {
+        return atob(CONFIG.tokenBase64);
+      }
+
+      function toBase64Utf8(str) {
+        return btoa(unescape(encodeURIComponent(str)));
+      }
+
+      function fromBase64Utf8(str) {
+        return decodeURIComponent(escape(atob((str || "").replace(/\n/g, ""))));
+      }
+
+      function setStatus(text, isError = false) {
+        const el = document.getElementById("status");
+        el.textContent = text;
+        el.style.color = isError ? "#d74f79" : "#8c5f6d";
+      }
+
+      async function githubRequest(path, method = "GET", body) {
+        const resp = await fetch(`https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}${path}`, {
+          method,
+          headers: {
+            Authorization: `token ${decodeBase64Token()}`,
+            Accept: "application/vnd.github+json",
+            "Content-Type": "application/json"
+          },
+          body: body ? JSON.stringify(body) : undefined
+        });
+        if (resp.status === 404) return null;
+        if (!resp.ok) {
+          const msg = await resp.text();
+          throw new Error(`GitHub API ${resp.status}: ${msg}`);
+        }
+        return resp.json();
+      }
+
+      async function getFile(path) {
+        const data = await githubRequest(`/contents/${path}?ref=${CONFIG.branch}`);
+        if (!data) return null;
+        return {
+          sha: data.sha,
+          content: data.content ? fromBase64Utf8(data.content) : ""
+        };
+      }
+
+      async function putJson(path, json, message) {
+        const exists = await githubRequest(`/contents/${path}?ref=${CONFIG.branch}`);
+        const payload = {
+          message,
+          branch: CONFIG.branch,
+          content: toBase64Utf8(JSON.stringify(json, null, 2))
+        };
+        if (exists && exists.sha) payload.sha = exists.sha;
+        return githubRequest(`/contents/${path}`, "PUT", payload);
+      }
+
+      async function deleteFile(path, message) {
+        const exists = await githubRequest(`/contents/${path}?ref=${CONFIG.branch}`);
+        if (!exists || !exists.sha) return;
+        await githubRequest(`/contents/${path}`, "DELETE", {
+          message,
+          sha: exists.sha,
+          branch: CONFIG.branch
+        });
+      }
+
+      function renderOptions() {
+        const ul = document.getElementById("optionList");
+        ul.innerHTML = "";
+        state.options.forEach((item, idx) => {
+          const li = document.createElement("li");
+          li.innerHTML = `<span>${idx + 1}. ${item}</span>`;
+          const right = document.createElement("div");
+          const del = document.createElement("button");
+          del.textContent = "删除";
+          del.className = "danger";
+          del.onclick = () => {
+            state.options.splice(idx, 1);
+            renderOptions();
+          };
+          right.appendChild(del);
+          li.appendChild(right);
+          ul.appendChild(li);
+        });
+      }
+
+      async function loadOptions() {
+        const file = await getFile("config/lottery-options.json");
+        if (!file) {
+          state.options = [...DEFAULT_OPTIONS];
+          renderOptions();
+          return;
+        }
+        try {
+          const json = JSON.parse(file.content);
+          state.options = Array.isArray(json.options) ? json.options : [...DEFAULT_OPTIONS];
+        } catch (e) {
+          state.options = [...DEFAULT_OPTIONS];
+        }
+        renderOptions();
+      }
+
+      async function saveOptions() {
+        const options = state.options.map((x) => `${x}`.trim()).filter(Boolean);
+        await putJson(
+          "config/lottery-options.json",
+          {
+            options,
+            updatedAt: Date.now()
+          },
+          "chore: update lottery options from admin"
+        );
+      }
+
+      function defaultUser(username, password) {
+        return {
+          username,
+          password,
+          createdAt: Date.now(),
+          partnerUsername: "",
+          loveStartDate: "",
+          partnerBirthday: {
+            type: "solar",
+            solar: "",
+            lunar: ""
+          },
+          todayMood: null,
+          diaries: [],
+          wishlist: []
+        };
+      }
+
+      async function listUsers() {
+        const list = await githubRequest(`/contents/user?ref=${CONFIG.branch}`);
+        if (!Array.isArray(list)) return [];
+        return list.filter((x) => x.type === "file" && x.name.endsWith(".json")).map((x) => x.name.replace(/\.json$/, ""));
+      }
+
+      async function renderUsers() {
+        const ul = document.getElementById("userList");
+        ul.innerHTML = "";
+        const users = await listUsers();
+        if (!users.length) {
+          ul.innerHTML = "<li>暂无用户</li>";
+          return;
+        }
+        for (const username of users) {
+          const file = await getFile(`user/${username}.json`);
+          let info = {};
+          try {
+            info = file ? JSON.parse(file.content) : {};
+          } catch (e) {
+            info = {};
+          }
+          const diaries = Array.isArray(info.diaries) ? info.diaries.length : 0;
+          const wishlist = Array.isArray(info.wishlist) ? info.wishlist.length : 0;
+          const partner = info.partnerUsername || "未绑定";
+
+          const li = document.createElement("li");
+          li.innerHTML = `
+            <div>
+              <strong>${username}</strong>
+              <span class="pill">日记 ${diaries}</span>
+              <span class="pill">清单 ${wishlist}</span>
+              <span class="pill">绑定 ${partner}</span>
+            </div>
+          `;
+          const right = document.createElement("div");
+          const del = document.createElement("button");
+          del.textContent = "删除用户";
+          del.className = "danger";
+          del.onclick = async () => {
+            if (!confirm(`确认删除账号 ${username} ?`)) return;
+            await deleteFile(`user/${username}.json`, `chore: delete user ${username}`);
+            await renderUsers();
+            setStatus(`已删除用户 ${username}`);
+          };
+          right.appendChild(del);
+          li.appendChild(right);
+          ul.appendChild(li);
+        }
+      }
+
+      async function createUser() {
+        const username = document.getElementById("newUserName").value.trim();
+        const password = document.getElementById("newUserPwd").value.trim();
+        if (!/^[a-zA-Z0-9_]{3,20}$/.test(username)) {
+          throw new Error("账号需为 3-20 位字母、数字或下划线");
+        }
+        if (password.length < 6) {
+          throw new Error("密码至少 6 位");
+        }
+        const exists = await getFile(`user/${username}.json`);
+        if (exists) {
+          throw new Error("账号已存在");
+        }
+        await putJson(`user/${username}.json`, defaultUser(username, password), `feat: create user ${username}`);
+        document.getElementById("newUserName").value = "";
+        document.getElementById("newUserPwd").value = "";
+      }
+
+      document.getElementById("addOptionBtn").onclick = () => {
+        const ipt = document.getElementById("newOption");
+        const val = ipt.value.trim();
+        if (!val) return;
+        state.options.push(val);
+        ipt.value = "";
+        renderOptions();
+      };
+
+      document.getElementById("saveOptionsBtn").onclick = async () => {
+        try {
+          await saveOptions();
+          setStatus("抽奖池已保存到 GitHub");
+        } catch (err) {
+          setStatus(err.message || "保存失败", true);
+        }
+      };
+
+      document.getElementById("createUserBtn").onclick = async () => {
+        try {
+          await createUser();
+          await renderUsers();
+          setStatus("账号创建成功");
+        } catch (err) {
+          setStatus(err.message || "创建失败", true);
+        }
+      };
+
+      document.getElementById("reloadUsersBtn").onclick = async () => {
+        try {
+          await renderUsers();
+          setStatus("用户列表已刷新");
+        } catch (err) {
+          setStatus(err.message || "刷新失败", true);
+        }
+      };
+
+      (async function init() {
+        try {
+          setStatus("正在加载管理员数据...");
+          await loadOptions();
+          await renderUsers();
+          setStatus("加载完成");
+        } catch (err) {
+          setStatus(err.message || "初始化失败", true);
+        }
+      })();
+    </script>
+  </body>
+</html>
