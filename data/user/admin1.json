@@ -10,28 +10,6 @@
     "lunar": ""
   },
   "todayMood": null,
-  "diaries": [
-    {
-      "id": "1772805242479",
-      "title": "awdwad",
-      "content": "dwawa",
-      "images": [
-        "http://tmp/V5v8JkrZfk7Zb128989f271432d741b6ebcffd2656e3.jpg"
-      ],
-      "weather": {
-        "key": "cloudy",
-        "label": "多云",
-        "icon": "⛅"
-      },
-      "mood": {
-        "key": "happy",
-        "label": "开心",
-        "icon": "😄"
-      },
-      "createdAt": 1772805242479,
-      "updatedAt": 1772805242479,
-      "dateText": "2026-03-06 21:54"
-    }
-  ],
+  "diaries": [],
   "wishlist": []
 }
