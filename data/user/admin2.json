@@ -1,0 +1,15 @@
+{
+  "username": "admin2",
+  "password": "admin2",
+  "createdAt": 1772804869443,
+  "partnerUsername": "",
+  "loveStartDate": "",
+  "partnerBirthday": {
+    "type": "solar",
+    "solar": "",
+    "lunar": ""
+  },
+  "todayMood": null,
+  "diaries": [],
+  "wishlist": []
+}
