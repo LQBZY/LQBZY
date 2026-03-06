@@ -37,7 +37,10 @@
       "location": "",
       "createdAt": 1772809240505,
       "updatedAt": 1772809240505,
-      "dateText": "2026-03-06 23:00"
+      "dateText": "2026-03-06 23:00",
+      "readBy": [
+        "admin1"
+      ]
     }
   ],
   "wishlist": [
