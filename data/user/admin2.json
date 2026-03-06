@@ -11,5 +11,13 @@
   },
   "todayMood": null,
   "diaries": [],
-  "wishlist": []
+  "wishlist": [
+    {
+      "id": "wish_1772808120542",
+      "index": 1,
+      "name": "宝宝",
+      "done": false,
+      "doneDate": ""
+    }
+  ]
 }
