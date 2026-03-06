@@ -15,5 +15,13 @@
     "icon": "🥺"
   },
   "diaries": [],
-  "wishlist": []
+  "wishlist": [
+    {
+      "id": "wish_1772806539776",
+      "index": 1,
+      "name": "宝宝",
+      "done": false,
+      "doneDate": ""
+    }
+  ]
 }
