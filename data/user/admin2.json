@@ -2,7 +2,7 @@
   "username": "admin2",
   "password": "admin2",
   "createdAt": 1772804869443,
-  "partnerUsername": "",
+  "partnerUsername": "admin1",
   "loveStartDate": "2026-03-06",
   "partnerBirthday": {
     "type": "solar",
