@@ -5,14 +5,13 @@
   "partnerUsername": "admin1",
   "loveStartDate": "2026-03-06",
   "partnerBirthday": {
-    "type": "solar",
+    "type": "lunar",
     "solar": "2026-03-07",
     "lunar": {
-      "year": "",
-      "month": "",
-      "day": "",
-      "isLeap": false,
-      "text": ""
+      "year": 2026,
+      "month": 3,
+      "day": 7,
+      "isLeap": false
     }
   },
   "todayMood": null,
