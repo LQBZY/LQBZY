@@ -21,7 +21,9 @@
       "id": "1772809800482",
       "title": "bb",
       "content": "。",
-      "images": [],
+      "images": [
+        "cloud://dev-3g38m55s82b2b326.6465-dev-3g38m55s82b2b326-1322401824/diary-images/1772809953890-58621.jpg"
+      ],
       "weather": {
         "key": "sunny",
         "label": "晴天",
@@ -36,7 +38,7 @@
       "locationLatitude": null,
       "locationLongitude": null,
       "createdAt": 1772809800482,
-      "updatedAt": 1772809800482,
+      "updatedAt": 1772809958261,
       "dateText": "2026-03-06 23:10"
     },
     {
