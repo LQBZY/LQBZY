@@ -7,10 +7,38 @@
   "partnerBirthday": {
     "type": "solar",
     "solar": "2026-03-07",
-    "lunar": ""
+    "lunar": {
+      "year": "",
+      "month": "",
+      "day": "",
+      "isLeap": false,
+      "text": ""
+    }
   },
   "todayMood": null,
   "diaries": [
+    {
+      "id": "1772808299089",
+      "title": "bb",
+      "content": "bb",
+      "images": [
+        "wxfile://tmp_03030ef04f92fb24eeb55ea1aaf1985f.png"
+      ],
+      "weather": {
+        "key": "sunny",
+        "label": "晴天",
+        "icon": "☀️"
+      },
+      "mood": {
+        "key": "happy",
+        "label": "开心",
+        "icon": "😄"
+      },
+      "location": "重庆师范大学大学城校区清风苑",
+      "createdAt": 1772808299089,
+      "updatedAt": 1772808299089,
+      "dateText": "2026-03-06 22:44"
+    },
     {
       "id": "1772808182350",
       "title": "bb",
