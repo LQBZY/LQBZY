@@ -11,13 +11,5 @@
   },
   "todayMood": null,
   "diaries": [],
-  "wishlist": [
-    {
-      "id": "wish_1772805708921",
-      "index": 1,
-      "name": "33",
-      "done": false,
-      "doneDate": ""
-    }
-  ]
+  "wishlist": []
 }
