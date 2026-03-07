@@ -1,38 +1,41 @@
 {
-  "username": "admin1",
-  "createdAt": 1772804690628,
-  "partnerUsername": "admin2",
-  "loveStartDate": "2016-12-25",
+  "username": "admin2",
+  "createdAt": 1772804869443,
+  "partnerUsername": "admin1",
+  "loveStartDate": "2026-03-06",
   "partnerBirthday": {
     "type": "lunar",
-    "solar": "2026-03-06",
+    "solar": "2026-03-07",
     "lunar": {
-      "year": 2002,
-      "month": 7,
-      "day": 10,
+      "year": 1998,
+      "month": 3,
+      "day": 7,
       "isLeap": false
     }
   },
-  "todayMood": {
-    "key": "miss",
-    "label": "想念",
-    "icon": "🥺"
-  },
+  "todayMood": null,
   "diaries": [],
   "wishlist": [
     {
-      "id": "wish_1772806539776",
+      "id": "wish_1772808120542",
       "index": 1,
       "name": "宝宝",
-      "done": false,
-      "doneDate": ""
+      "done": true,
+      "doneDate": "2026-03-06"
     },
     {
-      "id": "wish_1772812588073",
+      "id": "wish_1772808124756",
       "index": 2,
-      "name": "11",
+      "name": "呜呜",
       "done": true,
-      "doneDate": "2026-03-07"
+      "doneDate": "2026-03-06"
+    },
+    {
+      "id": "wish_1772858188304",
+      "index": 3,
+      "name": "你好",
+      "done": false,
+      "doneDate": ""
     }
   ],
   "punchRecords": {
