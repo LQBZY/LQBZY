@@ -25,6 +25,27 @@
   "diaries": [],
   "wishlist": [],
   "punchRecords": {},
-  "lotteryOptions": [],
+  "lotteryOptions": [
+    {
+      "text": "看电影",
+      "probability": 20
+    },
+    {
+      "text": "吃火锅",
+      "probability": 20
+    },
+    {
+      "text": "打游戏",
+      "probability": 20
+    },
+    {
+      "text": "瑟瑟",
+      "probability": 20
+    },
+    {
+      "text": "爱的亲亲",
+      "probability": 20
+    }
+  ],
   "lotteryHistory": []
 }
