@@ -1,25 +1,25 @@
 {
-  "username": "17723206683",
-  "nickname": "宝宝&宝宝",
-  "gender": "女",
+  "username": "15523752009",
+  "nickname": "biscuit",
+  "gender": "男",
   "avatar": "",
-  "createdAt": 1772807505664,
-  "partnerUsername": "15523752009",
+  "createdAt": 1772879253990,
+  "partnerUsername": "17723206683",
   "loveStartDate": "2016-12-25",
   "partnerBirthday": {
     "type": "lunar",
-    "solar": "",
+    "solar": "2002-12-15",
     "lunar": {
       "year": 2002,
-      "month": 7,
-      "day": 10,
+      "month": 12,
+      "day": 15,
       "isLeap": false
     }
   },
   "todayMood": {
-    "key": "miss",
-    "label": "想念",
-    "icon": "🥺"
+    "key": "sweet",
+    "label": "撒娇",
+    "icon": "🥰"
   },
   "diaries": [],
   "wishlist": [],
@@ -51,8 +51,13 @@
   "lotteryHistory": [
     {
       "who": "宝宝&宝宝",
+      "what": "爱的亲亲",
+      "at": 1772883413933
+    },
+    {
+      "who": "宝宝&宝宝",
       "what": "看电影",
-      "at": 1772883339979
+      "at": 1772883367015
     },
     {
       "who": "宝宝&宝宝",
@@ -62,12 +67,7 @@
     {
       "who": "宝宝&宝宝",
       "what": "看电影",
-      "at": 1772883367015
-    },
-    {
-      "who": "宝宝&宝宝",
-      "what": "爱的亲亲",
-      "at": 1772883413933
+      "at": 1772883339979
     }
   ]
 }
