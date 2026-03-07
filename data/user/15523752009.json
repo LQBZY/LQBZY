@@ -23,7 +23,17 @@
     "icon": "🥰"
   },
   "diaries": [],
-  "wishlist": [],
+  "wishlist": [
+    {
+      "id": "wish_1772887224578",
+      "index": 1,
+      "name": "每天都爱宝宝",
+      "done": false,
+      "doneDate": "",
+      "createdAt": 1772887224578,
+      "authorUsername": "15523752009"
+    }
+  ],
   "punchRecords": {
     "2026-03-07": true
   },
