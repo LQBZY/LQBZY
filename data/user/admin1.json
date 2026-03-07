@@ -30,27 +30,19 @@
   "lotteryOptions": [
     {
       "text": "看电影",
-      "probability": 10
+      "probability": 12.5
     },
     {
       "text": "吃火锅",
-      "probability": 10
-    },
-    {
-      "text": "去游乐园",
-      "probability": 10
+      "probability": 12.5
     },
     {
       "text": "在家打游戏",
-      "probability": 10
-    },
-    {
-      "text": "去逛公园",
-      "probability": 10
+      "probability": 12.5
     },
     {
       "text": "在家瑟瑟",
-      "probability": 50
+      "probability": 62.5
     }
   ]
 }
