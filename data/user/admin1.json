@@ -22,18 +22,12 @@
   "diaries": [],
   "wishlist": [
     {
-      "id": "wish_1772806539776",
-      "index": 1,
-      "name": "宝宝",
-      "done": false,
-      "doneDate": ""
-    },
-    {
       "id": "wish_1772812588073",
-      "index": 2,
+      "index": 1,
       "name": "11",
       "done": true,
-      "doneDate": "2026-03-07"
+      "doneDate": "2026-03-07",
+      "createdAt": 1772812588073
     }
   ],
   "punchRecords": {
