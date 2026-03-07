@@ -1,6 +1,9 @@
 {
   "username": "admin2",
   "password": "admin2",
+  "nickname": "BB",
+  "gender": "男",
+  "avatar": "",
   "createdAt": 1772804869443,
   "partnerUsername": "admin1",
   "loveStartDate": "2026-03-06",
@@ -22,21 +25,24 @@
       "index": 1,
       "name": "宝宝",
       "done": true,
-      "doneDate": "2026-03-06"
+      "doneDate": "2026-03-06",
+      "createdAt": 1772808120542
     },
     {
       "id": "wish_1772808124756",
       "index": 2,
       "name": "呜呜",
       "done": true,
-      "doneDate": "2026-03-06"
+      "doneDate": "2026-03-06",
+      "createdAt": 1772808124756
     },
     {
       "id": "wish_1772858188304",
       "index": 3,
       "name": "你好",
       "done": false,
-      "doneDate": ""
+      "doneDate": "",
+      "createdAt": 1772858188304
     }
   ],
   "punchRecords": {
