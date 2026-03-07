@@ -46,5 +46,31 @@
   ],
   "punchRecords": {
     "2026-03-07": true
-  }
+  },
+  "lotteryOptions": [
+    {
+      "text": "看电影",
+      "probability": 10
+    },
+    {
+      "text": "吃火锅",
+      "probability": 10
+    },
+    {
+      "text": "去游乐园",
+      "probability": 10
+    },
+    {
+      "text": "在家打游戏",
+      "probability": 10
+    },
+    {
+      "text": "去逛公园",
+      "probability": 10
+    },
+    {
+      "text": "在家瑟瑟",
+      "probability": 50
+    }
+  ]
 }
