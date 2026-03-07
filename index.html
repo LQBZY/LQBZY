@@ -1,409 +1,53 @@
-<!doctype html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>心动记录仪 - 管理员</title>
-    <style>
-      :root {
-        --bg: #fff5f7;
-        --card: rgba(255, 255, 255, 0.9);
-        --line: #ffd2df;
-        --text: #5e4149;
-        --primary: linear-gradient(135deg, #ff758c, #ff7eb3);
-      }
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        margin: 0;
-        font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
-        background: radial-gradient(circle at 15% 20%, #ffe6ee 0%, transparent 40%), var(--bg);
-        color: var(--text);
-      }
-      .wrap {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 24px;
-        display: grid;
-        gap: 20px;
-      }
-      .card {
-        background: var(--card);
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        box-shadow: 0 10px 24px rgba(255, 117, 140, 0.12);
-        padding: 18px;
-      }
-      h1 {
-        margin: 0;
-        font-size: 28px;
-      }
-      .sub {
-        margin-top: 8px;
-        color: #8a6670;
-      }
-      .row {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-      input,
-      button {
-        height: 40px;
-        border-radius: 10px;
-        border: 1px solid var(--line);
-        padding: 0 12px;
-        font-size: 14px;
-      }
-      input {
-        min-width: 200px;
-        background: #fff;
-        color: var(--text);
-      }
-      button {
-        border: none;
-        color: #fff;
-        background: var(--primary);
-        cursor: pointer;
-      }
-      button.light {
-        color: #8e5f6e;
-        border: 1px solid var(--line);
-        background: #fff;
-      }
-      ul {
-        margin: 12px 0 0;
-        padding: 0;
-        list-style: none;
-      }
-      li {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        padding: 10px 0;
-        border-bottom: 1px dashed #ffd8e4;
-      }
-      li:last-child {
-        border-bottom: none;
-      }
-      .pill {
-        font-size: 12px;
-        color: #8f6672;
-        background: #fff1f6;
-        border-radius: 999px;
-        padding: 4px 10px;
-      }
-      .danger {
-        background: #ff6c93;
-      }
-      .status {
-        margin-top: 8px;
-        min-height: 20px;
-        font-size: 13px;
-        color: #8c5f6d;
-      }
-      @media (max-width: 720px) {
-        input {
-          width: 100%;
-          min-width: 0;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="wrap">
-      <section class="card">
-        <h1>心动记录仪管理员</h1>
-        <div class="sub">管理 GitHub 上的用户文件与“今天干嘛呢”抽奖选项</div>
-        <div class="status" id="status"></div>
-      </section>
-
-      <section class="card">
-        <h2>约会抽奖池</h2>
-        <div class="row">
-          <input id="newOption" placeholder="添加约会选项" />
-          <button id="addOptionBtn">添加</button>
-          <button id="saveOptionsBtn">保存到 GitHub</button>
-        </div>
-        <ul id="optionList"></ul>
-      </section>
-
-      <section class="card">
-        <h2>用户管理</h2>
-        <div class="row">
-          <input id="newUserName" placeholder="新账号（3-20 位）" />
-          <input id="newUserPwd" type="password" placeholder="初始密码（至少 6 位）" />
-          <button id="createUserBtn">创建账号</button>
-          <button id="reloadUsersBtn" class="light">刷新列表</button>
-        </div>
-        <ul id="userList"></ul>
-      </section>
-    </div>
-
-    <script>
-      const CONFIG = {
-        owner: "lqbzy",
-        repo: "lqbzy.github.io",
-        branch: "main",
-        tokenBase64: ["Z2hwX3V0WDUyc1NEMEox", "RWZJc3VtWlN5bG9EV2FR", "SkpqdTBtV2JCQg=="].join("")
-      };
-
-      const DEFAULT_OPTIONS = ["看电影", "吃火锅", "去游乐园", "在家打游戏", "去逛公园"];
-
-      const state = {
-        options: []
-      };
-
-      function decodeBase64Token() {
-        return atob(CONFIG.tokenBase64);
-      }
-
-      function toBase64Utf8(str) {
-        return btoa(unescape(encodeURIComponent(str)));
-      }
-
-      function fromBase64Utf8(str) {
-        return decodeURIComponent(escape(atob((str || "").replace(/\n/g, ""))));
-      }
-
-      function setStatus(text, isError = false) {
-        const el = document.getElementById("status");
-        el.textContent = text;
-        el.style.color = isError ? "#d74f79" : "#8c5f6d";
-      }
-
-      async function githubRequest(path, method = "GET", body) {
-        const resp = await fetch(`https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}${path}`, {
-          method,
-          headers: {
-            Authorization: `token ${decodeBase64Token()}`,
-            Accept: "application/vnd.github+json",
-            "Content-Type": "application/json"
-          },
-          body: body ? JSON.stringify(body) : undefined
-        });
-        if (resp.status === 404) return null;
-        if (!resp.ok) {
-          const msg = await resp.text();
-          throw new Error(`GitHub API ${resp.status}: ${msg}`);
-        }
-        return resp.json();
-      }
-
-      async function getFile(path) {
-        const data = await githubRequest(`/contents/${path}?ref=${CONFIG.branch}`);
-        if (!data) return null;
-        return {
-          sha: data.sha,
-          content: data.content ? fromBase64Utf8(data.content) : ""
-        };
-      }
-
-      async function putJson(path, json, message) {
-        const exists = await githubRequest(`/contents/${path}?ref=${CONFIG.branch}`);
-        const payload = {
-          message,
-          branch: CONFIG.branch,
-          content: toBase64Utf8(JSON.stringify(json, null, 2))
-        };
-        if (exists && exists.sha) payload.sha = exists.sha;
-        return githubRequest(`/contents/${path}`, "PUT", payload);
-      }
-
-      async function deleteFile(path, message) {
-        const exists = await githubRequest(`/contents/${path}?ref=${CONFIG.branch}`);
-        if (!exists || !exists.sha) return;
-        await githubRequest(`/contents/${path}`, "DELETE", {
-          message,
-          sha: exists.sha,
-          branch: CONFIG.branch
-        });
-      }
-
-      function renderOptions() {
-        const ul = document.getElementById("optionList");
-        ul.innerHTML = "";
-        state.options.forEach((item, idx) => {
-          const li = document.createElement("li");
-          li.innerHTML = `<span>${idx + 1}. ${item}</span>`;
-          const right = document.createElement("div");
-          const del = document.createElement("button");
-          del.textContent = "删除";
-          del.className = "danger";
-          del.onclick = () => {
-            state.options.splice(idx, 1);
-            renderOptions();
-          };
-          right.appendChild(del);
-          li.appendChild(right);
-          ul.appendChild(li);
-        });
-      }
-
-      async function loadOptions() {
-        const file = await getFile("config/lottery-options.json");
-        if (!file) {
-          state.options = [...DEFAULT_OPTIONS];
-          renderOptions();
-          return;
-        }
-        try {
-          const json = JSON.parse(file.content);
-          state.options = Array.isArray(json.options) ? json.options : [...DEFAULT_OPTIONS];
-        } catch (e) {
-          state.options = [...DEFAULT_OPTIONS];
-        }
-        renderOptions();
-      }
-
-      async function saveOptions() {
-        const options = state.options.map((x) => `${x}`.trim()).filter(Boolean);
-        await putJson(
-          "config/lottery-options.json",
-          {
-            options,
-            updatedAt: Date.now()
-          },
-          "chore: update lottery options from admin"
-        );
-      }
-
-      function defaultUser(username, password) {
-        return {
-          username,
-          password,
-          createdAt: Date.now(),
-          partnerUsername: "",
-          loveStartDate: "",
-          partnerBirthday: {
-            type: "solar",
-            solar: "",
-            lunar: ""
-          },
-          todayMood: null,
-          diaries: [],
-          wishlist: []
-        };
-      }
-
-      async function listUsers() {
-        const list = await githubRequest(`/contents/user?ref=${CONFIG.branch}`);
-        if (!Array.isArray(list)) return [];
-        return list.filter((x) => x.type === "file" && x.name.endsWith(".json")).map((x) => x.name.replace(/\.json$/, ""));
-      }
-
-      async function renderUsers() {
-        const ul = document.getElementById("userList");
-        ul.innerHTML = "";
-        const users = await listUsers();
-        if (!users.length) {
-          ul.innerHTML = "<li>暂无用户</li>";
-          return;
-        }
-        for (const username of users) {
-          const file = await getFile(`user/${username}.json`);
-          let info = {};
-          try {
-            info = file ? JSON.parse(file.content) : {};
-          } catch (e) {
-            info = {};
-          }
-          const diaries = Array.isArray(info.diaries) ? info.diaries.length : 0;
-          const wishlist = Array.isArray(info.wishlist) ? info.wishlist.length : 0;
-          const partner = info.partnerUsername || "未绑定";
-
-          const li = document.createElement("li");
-          li.innerHTML = `
-            <div>
-              <strong>${username}</strong>
-              <span class="pill">日记 ${diaries}</span>
-              <span class="pill">清单 ${wishlist}</span>
-              <span class="pill">绑定 ${partner}</span>
-            </div>
-          `;
-          const right = document.createElement("div");
-          const del = document.createElement("button");
-          del.textContent = "删除用户";
-          del.className = "danger";
-          del.onclick = async () => {
-            if (!confirm(`确认删除账号 ${username} ?`)) return;
-            await deleteFile(`user/${username}.json`, `chore: delete user ${username}`);
-            await renderUsers();
-            setStatus(`已删除用户 ${username}`);
-          };
-          right.appendChild(del);
-          li.appendChild(right);
-          ul.appendChild(li);
-        }
-      }
-
-      async function createUser() {
-        const username = document.getElementById("newUserName").value.trim();
-        const password = document.getElementById("newUserPwd").value.trim();
-        if (!/^[a-zA-Z0-9_]{3,20}$/.test(username)) {
-          throw new Error("账号需为 3-20 位字母、数字或下划线");
-        }
-        if (password.length < 6) {
-          throw new Error("密码至少 6 位");
-        }
-        const exists = await getFile(`user/${username}.json`);
-        if (exists) {
-          throw new Error("账号已存在");
-        }
-        await putJson(`user/${username}.json`, defaultUser(username, password), `feat: create user ${username}`);
-        document.getElementById("newUserName").value = "";
-        document.getElementById("newUserPwd").value = "";
-      }
-
-      document.getElementById("addOptionBtn").onclick = () => {
-        const ipt = document.getElementById("newOption");
-        const val = ipt.value.trim();
-        if (!val) return;
-        state.options.push(val);
-        ipt.value = "";
-        renderOptions();
-      };
-
-      document.getElementById("saveOptionsBtn").onclick = async () => {
-        try {
-          await saveOptions();
-          setStatus("抽奖池已保存到 GitHub");
-        } catch (err) {
-          setStatus(err.message || "保存失败", true);
-        }
-      };
-
-      document.getElementById("createUserBtn").onclick = async () => {
-        try {
-          await createUser();
-          await renderUsers();
-          setStatus("账号创建成功");
-        } catch (err) {
-          setStatus(err.message || "创建失败", true);
-        }
-      };
-
-      document.getElementById("reloadUsersBtn").onclick = async () => {
-        try {
-          await renderUsers();
-          setStatus("用户列表已刷新");
-        } catch (err) {
-          setStatus(err.message || "刷新失败", true);
-        }
-      };
-
-      (async function init() {
-        try {
-          setStatus("正在加载管理员数据...");
-          await loadOptions();
-          await renderUsers();
-          setStatus("加载完成");
-        } catch (err) {
-          setStatus(err.message || "初始化失败", true);
-        }
-      })();
-    </script>
-  </body>
-</html>
+﻿<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>用户管理后台</title>
+<style>
+body{margin:0;font:14px "Microsoft YaHei";background:#f6f8fc;color:#1f2a44}.w{max-width:1200px;margin:0 auto;padding:14px;display:grid;gap:12px}.c{background:#fff;border:1px solid #e6ebf4;border-radius:12px;padding:12px}.g{display:grid;grid-template-columns:330px 1fr;gap:12px}.r{display:flex;gap:8px;flex-wrap:wrap}.r>*{flex:1}input,select,textarea,button{font:inherit}input,select,textarea{width:100%;border:1px solid #e6ebf4;border-radius:8px;padding:8px}input,select{height:36px}textarea{min-height:90px}button{border:0;background:#2f6bff;color:#fff;border-radius:999px;height:34px;padding:0 12px;cursor:pointer}.ghost{background:#eef2ff;color:#1f2a44}.danger{background:#ef4444}.list{max-height:560px;overflow:auto;border-top:1px solid #e6ebf4;margin-top:8px}.u{padding:8px 2px;border-bottom:1px solid #e6ebf4;display:grid;grid-template-columns:1fr auto;gap:6px;align-items:center}.u.on{background:#f3f7ff}.sub{font-size:12px;color:#6b7690}.s{font-size:12px;min-height:18px}.ok{color:#0f766e}.err{color:#ef4444}.h{display:none}@media(max-width:960px){.g{grid-template-columns:1fr}}
+</style></head>
+<body><div class="w">
+<div class="c"><h2 style="margin:0">用户管理后台</h2><div class="sub">只保留用户管理：查看/修改/删除账号中的愿望、生日、纪念日、图文日记，支持注销账号和改密码，保存后同步到 GitHub data/user/*.json</div><div class="r" style="margin-top:8px"><button id="test">测试连接</button><button id="refresh" class="ghost">刷新列表</button></div><div id="status" class="s"></div></div>
+<div class="g">
+<div class="c"><div class="r"><input id="kw" placeholder="搜索账号"></div><div class="r" style="margin-top:8px"><input id="newU" placeholder="新账号"><input id="newP" type="password" placeholder="初始密码"><button id="create">创建</button></div><div id="users" class="list"></div></div>
+<div class="c"><div id="empty" class="sub">请选择左侧账号</div><div id="editor" class="h">
+<div class="r"><label style="flex:1">账号<input id="f_user" readonly></label><label style="flex:1">密码<input id="f_pwd"></label></div>
+<div class="r"><label style="flex:1">恋爱纪念日<input id="f_love" type="date"></label><label style="flex:1">对象账号<input id="f_partner"></label></div>
+<div class="r"><label style="flex:1">生日类型<select id="f_bt"><option value="solar">阳历</option><option value="lunar">农历</option></select></label><label id="solarWrap" style="flex:1">阳历生日<input id="f_solar" type="date"></label></div>
+<div id="lunarWrap" class="r h"><label style="flex:1">农历年<input id="f_ly"></label><label style="flex:1">农历月<input id="f_lm"></label><label style="flex:1">农历日<input id="f_ld"></label><label style="flex:1">闰月<select id="f_ll"><option value="false">否</option><option value="true">是</option></select></label></div>
+<div style="margin-top:8px"><div class="sub">愿望清单(JSON 数组，可直接增删改)</div><textarea id="f_wish"></textarea></div>
+<div style="margin-top:8px"><div class="sub">图文日记(JSON 数组，可直接增删改)</div><textarea id="f_diary"></textarea></div>
+<div class="r" style="margin-top:8px"><button id="save">保存并同步</button><button id="reload" class="ghost">重载当前账号</button><button id="del" class="danger">注销并删除账号</button></div>
+</div></div>
+</div></div>
+<script>
+const C={owner:"lqbzy",repo:"LQBZY",branch:"main",token:["Z2hwX2NmUUEyU3pGREo1","TGlienNubW1TWW9BOGZp","RUUxSzJuVEZ0Tw=="]};
+const S={users:[],show:[],name:"",data:null};
+const $=id=>document.getElementById(id);const esc=s=>(`${s??""}`).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
+const b64=()=>atob(C.token.join(""));const e64=s=>btoa(unescape(encodeURIComponent(s)));const d64=s=>decodeURIComponent(escape(atob((s||"").replace(/\n/g,""))));
+function st(t,tp=""){const e=$("status");e.textContent=t||"";e.className="s "+(tp==="ok"?"ok":tp==="err"?"err":"")}
+async function req(p,m="GET",b){const r=await fetch(`https://api.github.com/repos/${C.owner}/${C.repo}${p}`,{method:m,headers:{Authorization:`token ${b64()}`,Accept:"application/vnd.github+json","Content-Type":"application/json"},body:b?JSON.stringify(b):undefined});if(r.status===404)return null;if(!r.ok)throw new Error(`GitHub ${r.status}: ${await r.text()}`);return r.json()}
+async function gf(p){const d=await req(`/contents/${p}?ref=${C.branch}`);if(!d)return null;return{sha:d.sha,content:d.content?d64(d.content):""}}
+async function pj(p,j,msg){const ex=await req(`/contents/${p}?ref=${C.branch}`);const body={message:msg,branch:C.branch,content:e64(JSON.stringify(j,null,2))};if(ex&&ex.sha)body.sha=ex.sha;return req(`/contents/${p}`,"PUT",body)}
+async function df(p,msg){const ex=await req(`/contents/${p}?ref=${C.branch}`);if(!ex||!ex.sha)return;return req(`/contents/${p}`,"DELETE",{message:msg,sha:ex.sha,branch:C.branch})}
+const up=u=>`data/user/${u}.json`;
+function du(u,p){return{username:u,password:p,nickname:"",partnerUsername:"",loveStartDate:"",partnerBirthday:{type:"solar",solar:"",lunar:{year:"",month:"",day:"",isLeap:false}},diaries:[],wishlist:[],createdAt:Date.now()}}
+function normUser(raw,u){const b=du(u||raw?.username||"",raw?.password||"");const x={...b,...(raw||{})};const pb=x.partnerBirthday||{};const l=(pb.lunar&&typeof pb.lunar==="object")?pb.lunar:{};x.partnerBirthday={type:pb.type==="lunar"?"lunar":"solar",solar:pb.solar||"",lunar:{year:l.year||"",month:l.month||"",day:l.day||"",isLeap:!!(l.isLeap||l.leapMonth)}};x.wishlist=Array.isArray(x.wishlist)?x.wishlist:[];x.diaries=Array.isArray(x.diaries)?x.diaries:[];return x}
+async function lu(){const ls=await req(`/contents/data/user?ref=${C.branch}`);if(!Array.isArray(ls))return[];return ls.filter(x=>x.type==="file"&&x.name.endsWith(".json")).map(x=>x.name.replace(/\.json$/,""))}
+async function loadUser(u){const f=await gf(up(u));if(!f)return null;try{return normUser(JSON.parse(f.content||"{}"),u)}catch{return normUser({},u)}}
+function renderUsers(){const box=$("users");if(!S.show.length){box.innerHTML='<div class="sub" style="padding:8px">暂无账号</div>';return}box.innerHTML=S.show.map(u=>`<div class="u ${S.name===u?"on":""}"><div><div>${esc(u)}</div></div><div class="r" style="flex-wrap:nowrap"><button data-a="open" data-u="${esc(u)}" class="ghost" style="height:30px">打开</button><button data-a="del" data-u="${esc(u)}" class="danger" style="height:30px">注销</button></div></div>`).join("")}
+function showEditor(on){$("empty").classList.toggle("h",on);$("editor").classList.toggle("h",!on)}
+function toDate(v){if(!v)return"";const d=new Date(v);if(isNaN(d))return"";const y=d.getFullYear(),m=`${d.getMonth()+1}`.padStart(2,"0"),da=`${d.getDate()}`.padStart(2,"0");return`${y}-${m}-${da}`}
+function fill(){const u=S.data;if(!u)return;$("f_user").value=u.username||"";$("f_pwd").value=u.password||"";$("f_love").value=toDate(u.loveStartDate);$("f_partner").value=u.partnerUsername||"";const pb=u.partnerBirthday||{};$("f_bt").value=pb.type==="lunar"?"lunar":"solar";$("f_solar").value=toDate(pb.solar||"");const l=pb.lunar||{};$("f_ly").value=l.year||"";$("f_lm").value=l.month||"";$("f_ld").value=l.day||"";$("f_ll").value=String(!!(l.isLeap||l.leapMonth));$("f_wish").value=JSON.stringify(Array.isArray(u.wishlist)?u.wishlist:[],null,2);$("f_diary").value=JSON.stringify(Array.isArray(u.diaries)?u.diaries:[],null,2);toggleBt();showEditor(true)}
+function toggleBt(){const t=$("f_bt").value;$("solarWrap").classList.toggle("h",t!=="solar");$("lunarWrap").classList.toggle("h",t!=="lunar")}
+function filt(){const k=$("kw").value.trim().toLowerCase();S.show=!k?[...S.users]:S.users.filter(x=>x.toLowerCase().includes(k));renderUsers()}
+async function refresh(){S.users=await lu();S.show=[...S.users];renderUsers()}
+async function openUser(u){st(`加载 ${u} 中...`);const d=await loadUser(u);if(!d){st("账号不存在","err");return}S.name=u;S.data=d;fill();renderUsers();st(`已加载 ${u}`,"ok")}
+function gather(){if(!S.data)throw new Error("未选择账号");const pwd=$("f_pwd").value.trim();if(pwd.length<6)throw new Error("密码至少 6 位");let wish=[],diary=[];try{wish=JSON.parse($("f_wish").value||"[]")}catch{throw new Error("愿望 JSON 格式错误")}try{diary=JSON.parse($("f_diary").value||"[]")}catch{throw new Error("日记 JSON 格式错误")}if(!Array.isArray(wish)||!Array.isArray(diary))throw new Error("愿望和日记必须是 JSON 数组");S.data.password=pwd;S.data.partnerUsername=$("f_partner").value.trim();S.data.loveStartDate=$("f_love").value||"";if($("f_bt").value==="solar"){S.data.partnerBirthday={type:"solar",solar:$("f_solar").value||"",lunar:{year:"",month:"",day:"",isLeap:false}}}else{S.data.partnerBirthday={type:"lunar",solar:"",lunar:{year:$("f_ly").value.trim(),month:$("f_lm").value.trim(),day:$("f_ld").value.trim(),isLeap:$("f_ll").value==="true"}}}S.data.wishlist=wish;S.data.diaries=diary;S.data.updatedAt=Date.now()}
+$("test").onclick=async()=>{try{st("测试连接中...");const d=await req(`/contents/data/user?ref=${C.branch}`);if(!Array.isArray(d))throw new Error("data/user 不可访问");st(`连接成功，账号文件 ${d.filter(x=>x.name.endsWith(".json")).length} 个`,`ok`)}catch(e){st(e.message||"连接失败","err")}};
+$("refresh").onclick=async()=>{try{st("刷新中...");await refresh();st("列表已刷新","ok")}catch(e){st(e.message||"刷新失败","err")}};
+$("create").onclick=async()=>{try{const u=$("newU").value.trim(),p=$("newP").value.trim();if(!/^[a-zA-Z0-9_]{3,20}$/.test(u))throw new Error("账号需为3-20位字母数字下划线");if(p.length<6)throw new Error("密码至少6位");if(await gf(up(u)))throw new Error("账号已存在");await pj(up(u),du(u,p),`feat: admin create user ${u}`);$("newU").value="";$("newP").value="";await refresh();st("账号创建成功","ok")}catch(e){st(e.message||"创建失败","err")}};
+$("kw").addEventListener("input",filt);$("f_bt").addEventListener("change",toggleBt);
+$("users").addEventListener("click",async e=>{const a=e.target?.dataset?.a,u=e.target?.dataset?.u;if(!u)return;if(a==="open"){try{await openUser(u)}catch(err){st(err.message||"加载失败","err")}}if(a==="del"){if(!confirm(`确认注销并删除账号 ${u} 吗？`))return;try{await df(up(u),`chore: admin delete user ${u}`);if(S.name===u){S.name="";S.data=null;showEditor(false)}await refresh();st(`已注销 ${u}`,"ok")}catch(err){st(err.message||"注销失败","err")}}});
+$("save").onclick=async()=>{try{gather();await pj(up(S.data.username),normUser(S.data,S.data.username),`feat: admin update user ${S.data.username}`);st(`已保存并同步 ${S.data.username}`,"ok")}catch(e){st(e.message||"保存失败","err")}};
+$("reload").onclick=async()=>{if(!S.name)return;try{await openUser(S.name)}catch(e){st(e.message||"重载失败","err")}};
+$("del").onclick=async()=>{if(!S.name)return;if(!confirm(`确认注销并删除账号 ${S.name} 吗？`))return;try{await df(up(S.name),`chore: admin delete user ${S.name}`);const n=S.name;S.name="";S.data=null;showEditor(false);await refresh();st(`已注销 ${n}`,"ok")}catch(e){st(e.message||"注销失败","err")}};
+(async()=>{showEditor(false);try{st("初始化中...");await refresh();st("初始化完成","ok")}catch(e){st(e.message||"初始化失败","err")}})();
+</script></body></html>
