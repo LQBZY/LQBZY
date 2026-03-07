@@ -35,14 +35,6 @@
       "done": true,
       "doneDate": "2026-03-06",
       "createdAt": 1772808124756
-    },
-    {
-      "id": "wish_1772858188304",
-      "index": 3,
-      "name": "你好",
-      "done": false,
-      "doneDate": "",
-      "createdAt": 1772858188304
     }
   ],
   "punchRecords": {
