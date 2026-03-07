@@ -71,5 +71,12 @@
       "text": "在家瑟瑟",
       "probability": 62.5
     }
+  ],
+  "lotteryHistory": [
+    {
+      "who": "QQ",
+      "what": "在家瑟瑟",
+      "at": 1772862819830
+    }
   ]
 }
