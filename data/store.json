@@ -1,99 +1,52 @@
 {
-  "username": "admin2",
-  "nickname": "BB",
-  "gender": "男",
+  "username": "17723206683",
+  "nickname": "宝宝&宝宝",
+  "gender": "女",
   "avatar": "",
-  "createdAt": 1772804869443,
-  "partnerUsername": "admin1",
+  "createdAt": 1772807505664,
+  "partnerUsername": "15523752009",
   "loveStartDate": "2016-12-25",
   "partnerBirthday": {
     "type": "lunar",
-    "solar": "2026-03-07",
+    "solar": "",
     "lunar": {
       "year": 2002,
-      "month": 12,
-      "day": 15,
+      "month": 7,
+      "day": 10,
       "isLeap": false
     }
   },
-  "todayMood": null,
+  "todayMood": {
+    "key": "kiss",
+    "label": "亲亲",
+    "icon": "😘"
+  },
   "diaries": [],
-  "wishlist": [
-    {
-      "id": "wish_1772863419574",
-      "index": 1,
-      "name": "bb",
-      "done": false,
-      "doneDate": "",
-      "createdAt": 1772863419574,
-      "authorUsername": ""
-    },
-    {
-      "id": "wish_1772863490400",
-      "index": 2,
-      "name": "bb",
-      "done": false,
-      "doneDate": "",
-      "createdAt": 1772863490400,
-      "authorUsername": ""
-    }
-  ],
+  "wishlist": [],
   "punchRecords": {
     "2026-03-07": true
   },
   "lotteryOptions": [
     {
       "text": "看电影",
-      "probability": 50,
-      "enabled": true
+      "probability": 20
     },
     {
       "text": "吃火锅",
-      "probability": 0,
-      "enabled": false
+      "probability": 20
     },
     {
-      "text": "在家打游戏",
-      "probability": 0,
-      "enabled": false
+      "text": "打游戏",
+      "probability": 20
     },
     {
-      "text": "在家瑟瑟",
-      "probability": 50,
-      "enabled": true
+      "text": "瑟瑟",
+      "probability": 20
     },
     {
-      "text": "和TA亲亲",
-      "probability": 0,
-      "enabled": false
+      "text": "爱的亲亲",
+      "probability": 20
     }
   ],
-  "lotteryHistory": [
-    {
-      "who": "QQ",
-      "what": "在家瑟瑟",
-      "at": 1772875266125
-    },
-    {
-      "who": "QQ",
-      "what": "在家瑟瑟",
-      "at": 1772863553870
-    },
-    {
-      "who": "QQ",
-      "what": "在家瑟瑟",
-      "at": 1772862840152
-    },
-    {
-      "who": "QQ",
-      "what": "在家瑟瑟",
-      "at": 1772862819830
-    }
-  ],
-  "flight90": {
-    "pos": 14,
-    "lastRoll": 5,
-    "lastRollAt": 1772882759745,
-    "updatedAt": 1772882759745
-  }
+  "lotteryHistory": []
 }
