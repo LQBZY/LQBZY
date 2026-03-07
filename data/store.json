@@ -1,14 +1,14 @@
 {
-  "username": "admin2",
-  "nickname": "BB",
+  "username": "15523752009",
+  "nickname": "biscuit",
   "gender": "男",
   "avatar": "",
-  "createdAt": 1772804869443,
-  "partnerUsername": "admin1",
+  "createdAt": 1772879253990,
+  "partnerUsername": "17723206683",
   "loveStartDate": "2016-12-25",
   "partnerBirthday": {
     "type": "lunar",
-    "solar": "2026-03-07",
+    "solar": "2002-12-15",
     "lunar": {
       "year": 2002,
       "month": 12,
@@ -16,26 +16,21 @@
       "isLeap": false
     }
   },
-  "todayMood": null,
+  "todayMood": {
+    "key": "sweet",
+    "label": "撒娇",
+    "icon": "🥰"
+  },
   "diaries": [],
   "wishlist": [
     {
-      "id": "wish_1772863419574",
+      "id": "wish_1772887224578",
       "index": 1,
-      "name": "bb",
+      "name": "每天都爱宝宝",
       "done": false,
       "doneDate": "",
-      "createdAt": 1772863419574,
-      "authorUsername": ""
-    },
-    {
-      "id": "wish_1772863490400",
-      "index": 2,
-      "name": "bb",
-      "done": false,
-      "doneDate": "",
-      "createdAt": 1772863490400,
-      "authorUsername": ""
+      "createdAt": 1772887224578,
+      "authorUsername": "15523752009"
     }
   ],
   "punchRecords": {
@@ -43,57 +38,67 @@
   },
   "lotteryOptions": [
     {
-      "text": "看电影",
-      "probability": 50,
-      "enabled": true
+      "text": "瑟瑟1",
+      "probability": 20
     },
     {
-      "text": "吃火锅",
-      "probability": 0,
-      "enabled": false
+      "text": "瑟瑟2",
+      "probability": 20
     },
     {
-      "text": "在家打游戏",
-      "probability": 0,
-      "enabled": false
+      "text": "瑟瑟3",
+      "probability": 20
     },
     {
-      "text": "在家瑟瑟",
-      "probability": 50,
-      "enabled": true
+      "text": "瑟瑟",
+      "probability": 20
     },
     {
-      "text": "和TA亲亲",
-      "probability": 0,
-      "enabled": false
+      "text": "爱的亲亲",
+      "probability": 20
     }
   ],
   "lotteryHistory": [
     {
-      "who": "QQ",
-      "what": "在家瑟瑟",
-      "at": 1772875266125
+      "who": "宝宝&宝宝",
+      "what": "瑟瑟1",
+      "at": 1772883534602
     },
     {
-      "who": "QQ",
-      "what": "在家瑟瑟",
-      "at": 1772863553870
+      "who": "宝宝&宝宝",
+      "what": "瑟瑟3",
+      "at": 1772883519554
     },
     {
-      "who": "QQ",
-      "what": "在家瑟瑟",
-      "at": 1772862840152
+      "who": "宝宝&宝宝",
+      "what": "瑟瑟3",
+      "at": 1772883498345
     },
     {
-      "who": "QQ",
-      "what": "在家瑟瑟",
-      "at": 1772862819830
+      "who": "宝宝&宝宝",
+      "what": "爱的亲亲",
+      "at": 1772883413933
+    },
+    {
+      "who": "宝宝&宝宝",
+      "what": "看电影",
+      "at": 1772883367015
+    },
+    {
+      "who": "宝宝&宝宝",
+      "what": "看电影",
+      "at": 1772883354465
+    },
+    {
+      "who": "宝宝&宝宝",
+      "what": "看电影",
+      "at": 1772883339979
     }
   ],
   "flight90": {
-    "pos": 17,
-    "lastRoll": 3,
-    "lastRollAt": 1772902515416,
-    "updatedAt": 1772902515416
+    "pos": 0,
+    "lastRoll": 0,
+    "lastRollAt": 0,
+    "updatedAt": 0
   }
 }
