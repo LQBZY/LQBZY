@@ -23,8 +23,8 @@
       "id": "wish_1772863419574",
       "index": 1,
       "name": "bb",
-      "done": false,
-      "doneDate": "",
+      "done": true,
+      "doneDate": "2026-03-07",
       "createdAt": 1772863419574
     }
   ],
