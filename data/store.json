@@ -1,29 +1,50 @@
 {
-  "username": "15523752009",
-  "nickname": "biscuit",
-  "gender": "男",
+  "username": "17723206683",
+  "nickname": "",
+  "gender": "女",
   "avatar": "",
-  "createdAt": 1772879253990,
-  "partnerUsername": "17723206683",
+  "createdAt": 1772807505664,
+  "partnerUsername": "15523752009",
   "loveStartDate": "2016-12-25",
   "partnerBirthday": {
     "type": "lunar",
-    "solar": "2002-12-15",
+    "solar": "",
     "lunar": {
       "year": 2002,
-      "month": 12,
-      "day": 15,
+      "month": 7,
+      "day": 10,
       "isLeap": false
     }
   },
   "todayMood": {
-    "key": "sweet",
-    "label": "撒娇",
-    "icon": "🥰"
+    "key": "kiss",
+    "label": "亲亲",
+    "icon": "😘"
   },
   "diaries": [],
   "wishlist": [],
   "punchRecords": {},
-  "lotteryOptions": [],
+  "lotteryOptions": [
+    {
+      "text": "看电影",
+      "probability": 20
+    },
+    {
+      "text": "吃火锅",
+      "probability": 20
+    },
+    {
+      "text": "打游戏",
+      "probability": 20
+    },
+    {
+      "text": "瑟瑟",
+      "probability": 20
+    },
+    {
+      "text": "爱的亲亲",
+      "probability": 20
+    }
+  ],
   "lotteryHistory": []
 }
