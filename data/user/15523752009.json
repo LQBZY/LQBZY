@@ -28,8 +28,8 @@
       "id": "wish_1772887224578",
       "index": 1,
       "name": "每天都爱宝宝",
-      "done": true,
-      "doneDate": "2026-03-07",
+      "done": false,
+      "doneDate": "",
       "createdAt": 1772887224578,
       "authorUsername": "15523752009"
     }
@@ -95,5 +95,11 @@
       "what": "看电影",
       "at": 1772883339979
     }
-  ]
+  ],
+  "flight90": {
+    "pos": 0,
+    "lastRoll": 0,
+    "lastRollAt": 0,
+    "updatedAt": 0
+  }
 }
