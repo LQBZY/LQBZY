@@ -55,8 +55,8 @@
       "id": "wish_1772863140792",
       "index": 1,
       "name": "阿达瓦",
-      "done": false,
-      "doneDate": "",
+      "done": true,
+      "doneDate": "2026-03-07",
       "createdAt": 1772863140792
     }
   ],
