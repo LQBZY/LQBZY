@@ -1,6 +1,9 @@
 {
   "username": "admin1",
   "password": "admin1",
+  "nickname": "",
+  "gender": "男",
+  "avatar": "",
   "createdAt": 1772804690628,
   "partnerUsername": "admin2",
   "loveStartDate": "2016-12-25",
