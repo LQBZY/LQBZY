@@ -27,15 +27,15 @@
   "punchRecords": {},
   "lotteryOptions": [
     {
-      "text": "看电影",
+      "text": "瑟瑟1",
       "probability": 20
     },
     {
-      "text": "吃火锅",
+      "text": "瑟瑟2",
       "probability": 20
     },
     {
-      "text": "打游戏",
+      "text": "瑟瑟3",
       "probability": 20
     },
     {
