@@ -7,12 +7,12 @@
   "partnerUsername": "",
   "loveStartDate": "2016-12-25",
   "partnerBirthday": {
-    "type": "solar",
+    "type": "lunar",
     "solar": "2002-12-15",
     "lunar": {
-      "year": "",
-      "month": "",
-      "day": "",
+      "year": 2002,
+      "month": 12,
+      "day": 15,
       "isLeap": false
     }
   },
