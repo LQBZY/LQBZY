@@ -45,7 +45,10 @@
       "locationLongitude": null,
       "createdAt": 1772856714476,
       "updatedAt": 1772856714476,
-      "dateText": "2026-03-07 12:11"
+      "dateText": "2026-03-07 12:11",
+      "readBy": [
+        "admin2"
+      ]
     },
     {
       "id": "1772812510652",
