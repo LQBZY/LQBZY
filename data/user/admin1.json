@@ -25,20 +25,22 @@
   "diaries": [],
   "wishlist": [
     {
-      "id": "wish_1772863419574",
+      "id": "wish_1772863490400",
       "index": 1,
       "name": "bb",
-      "done": false,
-      "doneDate": "",
-      "createdAt": 1772863419574
+      "done": true,
+      "doneDate": "2026-03-07",
+      "createdAt": 1772863490400,
+      "authorUsername": "admin1"
     },
     {
-      "id": "wish_1772863490400",
+      "id": "wish_1772863419574",
       "index": 2,
       "name": "bb",
       "done": false,
       "doneDate": "",
-      "createdAt": 1772863490400
+      "createdAt": 1772863419574,
+      "authorUsername": "admin1"
     }
   ],
   "punchRecords": {
