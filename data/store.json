@@ -10,9 +10,9 @@
     "type": "lunar",
     "solar": "2026-03-07",
     "lunar": {
-      "year": 1998,
-      "month": 3,
-      "day": 7,
+      "year": 2002,
+      "month": 12,
+      "day": 15,
       "isLeap": false
     }
   },
