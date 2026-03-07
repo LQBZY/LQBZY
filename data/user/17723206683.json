@@ -8,14 +8,13 @@
   "partnerUsername": "15523752009",
   "loveStartDate": "2016-12-25",
   "partnerBirthday": {
-    "type": "solar",
+    "type": "lunar",
     "solar": "",
     "lunar": {
-      "year": "",
-      "month": "",
-      "day": "",
-      "isLeap": false,
-      "text": ""
+      "year": 2002,
+      "month": 7,
+      "day": 10,
+      "isLeap": false
     }
   },
   "todayMood": {
