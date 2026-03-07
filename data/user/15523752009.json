@@ -17,7 +17,11 @@
       "isLeap": false
     }
   },
-  "todayMood": null,
+  "todayMood": {
+    "key": "sweet",
+    "label": "撒娇",
+    "icon": "🥰"
+  },
   "diaries": [],
   "wishlist": [],
   "punchRecords": {},
