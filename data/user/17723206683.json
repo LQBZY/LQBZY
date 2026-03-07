@@ -24,7 +24,9 @@
   },
   "diaries": [],
   "wishlist": [],
-  "punchRecords": {},
+  "punchRecords": {
+    "2026-03-07": true
+  },
   "lotteryOptions": [
     {
       "text": "看电影",
