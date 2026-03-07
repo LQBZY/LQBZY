@@ -48,23 +48,23 @@
   "lotteryOptions": [
     {
       "text": "看电影",
-      "probability": 0
+      "probability": 20
     },
     {
       "text": "吃火锅",
-      "probability": 0
+      "probability": 20
     },
     {
       "text": "在家打游戏",
-      "probability": 0
+      "probability": 20
     },
     {
       "text": "在家瑟瑟",
-      "probability": 0
+      "probability": 20
     },
     {
       "text": "和TA亲亲",
-      "probability": 100
+      "probability": 20
     }
   ],
   "lotteryHistory": [
