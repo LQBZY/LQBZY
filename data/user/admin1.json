@@ -20,16 +20,7 @@
     "icon": "🥺"
   },
   "diaries": [],
-  "wishlist": [
-    {
-      "id": "wish_1772812588073",
-      "index": 1,
-      "name": "11",
-      "done": true,
-      "doneDate": "2026-03-07",
-      "createdAt": 1772812588073
-    }
-  ],
+  "wishlist": [],
   "punchRecords": {
     "2026-03-07": true
   }
