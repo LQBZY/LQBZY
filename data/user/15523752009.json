@@ -1,0 +1,26 @@
+{
+  "username": "15523752009",
+  "password": "021215",
+  "nickname": "",
+  "gender": "女",
+  "avatar": "",
+  "createdAt": 1772879253990,
+  "partnerUsername": "",
+  "loveStartDate": "",
+  "partnerBirthday": {
+    "type": "solar",
+    "solar": "",
+    "lunar": {
+      "year": "",
+      "month": "",
+      "day": "",
+      "isLeap": false
+    }
+  },
+  "todayMood": null,
+  "diaries": [],
+  "wishlist": [],
+  "punchRecords": {},
+  "lotteryOptions": [],
+  "lotteryHistory": []
+}
