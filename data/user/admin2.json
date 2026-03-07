@@ -17,33 +17,6 @@
   "todayMood": null,
   "diaries": [
     {
-      "id": "1772809800482",
-      "title": "bb",
-      "content": "。",
-      "images": [
-        "cloud://dev-3g38m55s82b2b326.6465-dev-3g38m55s82b2b326-1322401824/diary-images/1772809953890-58621.jpg"
-      ],
-      "weather": {
-        "key": "sunny",
-        "label": "晴天",
-        "icon": "☀️"
-      },
-      "mood": {
-        "key": "happy",
-        "label": "开心",
-        "icon": "😄"
-      },
-      "location": "",
-      "locationLatitude": null,
-      "locationLongitude": null,
-      "createdAt": 1772809800482,
-      "updatedAt": 1772809958261,
-      "dateText": "2026-03-06 23:10",
-      "readBy": [
-        "admin1"
-      ]
-    },
-    {
       "id": "1772809240505",
       "title": "334",
       "content": "爱",
