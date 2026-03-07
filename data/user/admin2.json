@@ -15,33 +15,7 @@
     }
   },
   "todayMood": null,
-  "diaries": [
-    {
-      "id": "1772809240505",
-      "title": "334",
-      "content": "爱",
-      "images": [
-        "wxfile://tmp_e3c51ed3e38bdf181d20a750a09e4d6d.png"
-      ],
-      "weather": {
-        "key": "sunny",
-        "label": "晴天",
-        "icon": "☀️"
-      },
-      "mood": {
-        "key": "happy",
-        "label": "开心",
-        "icon": "😄"
-      },
-      "location": "",
-      "createdAt": 1772809240505,
-      "updatedAt": 1772809240505,
-      "dateText": "2026-03-06 23:00",
-      "readBy": [
-        "admin1"
-      ]
-    }
-  ],
+  "diaries": [],
   "wishlist": [
     {
       "id": "wish_1772808120542",
