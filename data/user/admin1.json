@@ -19,30 +19,7 @@
     "label": "想念",
     "icon": "🥺"
   },
-  "diaries": [
-    {
-      "id": "1772806609468",
-      "title": "24342",
-      "content": "234",
-      "images": [],
-      "weather": {
-        "key": "cloudy",
-        "label": "多云",
-        "icon": "⛅"
-      },
-      "mood": {
-        "key": "happy",
-        "label": "开心",
-        "icon": "😄"
-      },
-      "createdAt": 1772806609468,
-      "updatedAt": 1772806609468,
-      "dateText": "2026-03-06 22:16",
-      "readBy": [
-        "admin2"
-      ]
-    }
-  ],
+  "diaries": [],
   "wishlist": [
     {
       "id": "wish_1772806539776",
