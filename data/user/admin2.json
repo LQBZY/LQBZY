@@ -30,6 +30,13 @@
       "name": "呜呜",
       "done": true,
       "doneDate": "2026-03-06"
+    },
+    {
+      "id": "wish_1772858188304",
+      "index": 3,
+      "name": "你好",
+      "done": false,
+      "doneDate": ""
     }
   ],
   "punchRecords": {
