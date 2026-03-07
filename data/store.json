@@ -26,6 +26,14 @@
       "done": false,
       "doneDate": "",
       "createdAt": 1772861101941
+    },
+    {
+      "id": "wish_1772861105136",
+      "index": 2,
+      "name": "爱你",
+      "done": false,
+      "doneDate": "",
+      "createdAt": 1772861105136
     }
   ],
   "punchRecords": {
