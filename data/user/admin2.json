@@ -26,7 +26,8 @@
       "name": "bb",
       "done": false,
       "doneDate": "",
-      "createdAt": 1772863419574
+      "createdAt": 1772863419574,
+      "authorUsername": ""
     },
     {
       "id": "wish_1772863490400",
@@ -34,7 +35,8 @@
       "name": "bb",
       "done": false,
       "doneDate": "",
-      "createdAt": 1772863490400
+      "createdAt": 1772863490400,
+      "authorUsername": ""
     }
   ],
   "punchRecords": {
@@ -88,5 +90,11 @@
       "what": "在家瑟瑟",
       "at": 1772862819830
     }
-  ]
+  ],
+  "flight90": {
+    "pos": 2,
+    "lastRoll": 2,
+    "lastRollAt": 1772882706320,
+    "updatedAt": 1772882706320
+  }
 }
