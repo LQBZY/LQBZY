@@ -1,13 +1,22 @@
 {
   "username": "17723206683",
   "password": "020710",
+  "nickname": "",
+  "gender": "女",
+  "avatar": "",
   "createdAt": 1772807505664,
-  "partnerUsername": "",
-  "loveStartDate": "",
+  "partnerUsername": "15523752009",
+  "loveStartDate": "2016-12-25",
   "partnerBirthday": {
     "type": "solar",
     "solar": "",
-    "lunar": ""
+    "lunar": {
+      "year": "",
+      "month": "",
+      "day": "",
+      "isLeap": false,
+      "text": ""
+    }
   },
   "todayMood": {
     "key": "miss",
@@ -15,5 +24,8 @@
     "icon": "🥺"
   },
   "diaries": [],
-  "wishlist": []
+  "wishlist": [],
+  "punchRecords": {},
+  "lotteryOptions": [],
+  "lotteryHistory": []
 }
