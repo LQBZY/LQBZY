@@ -1,49 +1,28 @@
 {
-  "username": "admin2",
-  "nickname": "BB",
-  "gender": "男",
+  "username": "admin1",
+  "nickname": "QQ",
+  "gender": "女",
   "avatar": "",
-  "createdAt": 1772804869443,
-  "partnerUsername": "admin1",
-  "loveStartDate": "2026-03-06",
+  "createdAt": 1772804690628,
+  "partnerUsername": "admin2",
+  "loveStartDate": "2016-12-25",
   "partnerBirthday": {
     "type": "lunar",
-    "solar": "2026-03-07",
+    "solar": "2026-03-06",
     "lunar": {
-      "year": 1998,
-      "month": 3,
-      "day": 7,
+      "year": 2002,
+      "month": 7,
+      "day": 10,
       "isLeap": false
     }
   },
-  "todayMood": null,
+  "todayMood": {
+    "key": "miss",
+    "label": "想念",
+    "icon": "🥺"
+  },
   "diaries": [],
-  "wishlist": [
-    {
-      "id": "wish_1772808120542",
-      "index": 1,
-      "name": "宝宝",
-      "done": true,
-      "doneDate": "2026-03-06",
-      "createdAt": 1772808120542
-    },
-    {
-      "id": "wish_1772808124756",
-      "index": 2,
-      "name": "呜呜",
-      "done": true,
-      "doneDate": "2026-03-06",
-      "createdAt": 1772808124756
-    },
-    {
-      "id": "wish_1772858188304",
-      "index": 3,
-      "name": "你好",
-      "done": false,
-      "doneDate": "",
-      "createdAt": 1772858188304
-    }
-  ],
+  "wishlist": [],
   "punchRecords": {
     "2026-03-07": true
   }
