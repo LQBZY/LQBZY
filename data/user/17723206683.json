@@ -77,23 +77,23 @@
   },
   "lotteryOptions": [
     {
-      "text": "瑟瑟1",
+      "text": "公园",
       "probability": 20
     },
     {
-      "text": "瑟瑟2",
+      "text": "电影",
       "probability": 20
     },
     {
-      "text": "瑟瑟3",
+      "text": "学习",
       "probability": 20
     },
     {
-      "text": "瑟瑟",
+      "text": "游乐园",
       "probability": 20
     },
     {
-      "text": "站着涩涩",
+      "text": "吃饭",
       "probability": 20
     }
   ],
