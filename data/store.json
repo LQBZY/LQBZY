@@ -1,40 +1,50 @@
 {
-  "username": "15523752009",
-  "nickname": "biscuit",
-  "gender": "男",
+  "username": "17723206683",
+  "nickname": "宝宝&宝宝",
+  "gender": "女",
   "avatar": "",
-  "createdAt": 1772879253990,
-  "partnerUsername": "17723206683",
+  "createdAt": 1772807505664,
+  "partnerUsername": "15523752009",
   "loveStartDate": "2016-12-25",
   "partnerBirthday": {
     "type": "lunar",
-    "solar": "2002-12-15",
+    "solar": "",
     "lunar": {
       "year": 2002,
-      "month": 12,
-      "day": 15,
+      "month": 7,
+      "day": 10,
       "isLeap": false
     }
   },
   "todayMood": {
-    "key": "sweet",
-    "label": "撒娇",
-    "icon": "🥰"
+    "key": "miss",
+    "label": "想念",
+    "icon": "🥺"
   },
   "diaries": [],
   "wishlist": [
     {
-      "id": "wish_1772887224578",
+      "id": "wish_1772883567213",
       "index": 1,
-      "name": "每天都爱宝宝",
+      "name": "我要买房",
       "done": false,
       "doneDate": "",
-      "createdAt": 1772887224578,
-      "authorUsername": "15523752009"
+      "createdAt": 1772883567213,
+      "authorUsername": "17723206683"
+    },
+    {
+      "id": "wish_1772883575231",
+      "index": 2,
+      "name": "嫁给毕周渝",
+      "done": false,
+      "doneDate": "",
+      "createdAt": 1772883575231,
+      "authorUsername": "17723206683"
     }
   ],
   "punchRecords": {
-    "2026-03-07": true
+    "2026-03-07": true,
+    "2026-03-08": true
   },
   "lotteryOptions": [
     {
@@ -94,11 +104,5 @@
       "what": "看电影",
       "at": 1772883339979
     }
-  ],
-  "flight90": {
-    "pos": 0,
-    "lastRoll": 0,
-    "lastRollAt": 0,
-    "updatedAt": 0
-  }
+  ]
 }
