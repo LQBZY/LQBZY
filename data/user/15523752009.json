@@ -28,8 +28,8 @@
       "id": "wish_1772887224578",
       "index": 1,
       "name": "每天都爱宝宝",
-      "done": true,
-      "doneDate": "2026-03-08",
+      "done": false,
+      "doneDate": "",
       "createdAt": 1772887224578,
       "authorUsername": "15523752009"
     }
