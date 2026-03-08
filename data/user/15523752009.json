@@ -22,7 +22,32 @@
     "label": "亲亲",
     "icon": "😘"
   },
-  "diaries": [],
+  "diaries": [
+    {
+      "id": "diary_15523752009_1772985191909",
+      "title": "超开心",
+      "content": "么么哒爱你",
+      "images": [],
+      "stemImages": [],
+      "weather": {
+        "key": "sunny",
+        "label": "晴天",
+        "icon": "☀️"
+      },
+      "mood": {
+        "key": "happy",
+        "label": "开心",
+        "icon": "😄"
+      },
+      "location": "",
+      "locationLatitude": null,
+      "locationLongitude": null,
+      "authorUsername": "15523752009",
+      "createdAt": 1772985191909,
+      "updatedAt": 1772985191909,
+      "dateText": "2026-03-08 23:53"
+    }
+  ],
   "wishlist": [
     {
       "id": "wish_1772887224578",
