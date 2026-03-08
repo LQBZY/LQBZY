@@ -18,9 +18,9 @@
     }
   },
   "todayMood": {
-    "key": "miss",
-    "label": "想念",
-    "icon": "🥺"
+    "key": "sweet",
+    "label": "撒娇",
+    "icon": "🥰"
   },
   "diaries": [],
   "wishlist": [
