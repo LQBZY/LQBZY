@@ -153,6 +153,11 @@
   "lotteryHistory": [
     {
       "who": "biscuit",
+      "what": "电影",
+      "at": 1773072198077
+    },
+    {
+      "who": "biscuit",
       "what": "公园",
       "at": 1772985546825
     },
