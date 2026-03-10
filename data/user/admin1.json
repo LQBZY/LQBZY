@@ -100,5 +100,20 @@
     "lastRoll": 5,
     "lastRollAt": 1772882544889,
     "updatedAt": 1772882544889
-  }
+  },
+  "loveDays": [
+    {
+      "id": "ld_1773123050061_giwp87",
+      "title": "妈妈生日",
+      "type": "lunar",
+      "note": "",
+      "createdAt": 1773123050061,
+      "solar": "",
+      "lunar": {
+        "month": 11,
+        "day": 1,
+        "isLeap": false
+      }
+    }
+  ]
 }
