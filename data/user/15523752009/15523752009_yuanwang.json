@@ -4,11 +4,11 @@
       "id": "wish_1773130853198",
       "index": 1,
       "name": "爱宝宝",
-      "done": false,
-      "doneDate": "",
+      "done": true,
+      "doneDate": "2026-03-10",
       "createdAt": 1773130853198,
       "authorUsername": "15523752009"
     }
   ],
-  "updatedAt": 1773130859730
+  "updatedAt": 1773130861404
 }
