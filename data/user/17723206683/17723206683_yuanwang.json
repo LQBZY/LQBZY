@@ -1,4 +1,14 @@
 {
-  "wishlist": [],
-  "updatedAt": 1773158030971
+  "wishlist": [
+    {
+      "id": "wish_1773158055927",
+      "index": 1,
+      "name": "嫁给宝宝",
+      "done": false,
+      "doneDate": "",
+      "createdAt": 1773158055927,
+      "authorUsername": "17723206683"
+    }
+  ],
+  "updatedAt": 1773158069450
 }
