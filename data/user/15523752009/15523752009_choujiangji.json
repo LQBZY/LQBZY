@@ -1,5 +1,11 @@
 {
   "lotteryOptions": [],
-  "lotteryHistory": [],
-  "updatedAt": 1773130020945
+  "lotteryHistory": [
+    {
+      "who": "Biscuits",
+      "what": "在家打游戏",
+      "at": 1773130147244
+    }
+  ],
+  "updatedAt": 1773130153308
 }
