@@ -1,5 +1,5 @@
 {
-  "loveStartDate": "",
+  "loveStartDate": "2016-12-25",
   "partnerBirthday": {
     "type": "solar",
     "solar": "",
@@ -10,5 +10,5 @@
       "isLeap": false
     }
   },
-  "updatedAt": 1773127587265
+  "updatedAt": 1773129773626
 }
