@@ -1,0 +1,23 @@
+{
+  "wishlist": [
+    {
+      "id": "wish_1772863419574",
+      "index": 1,
+      "name": "bb",
+      "done": false,
+      "doneDate": "",
+      "createdAt": 1772863419574,
+      "authorUsername": ""
+    },
+    {
+      "id": "wish_1772863490400",
+      "index": 2,
+      "name": "bb",
+      "done": false,
+      "doneDate": "",
+      "createdAt": 1772863490400,
+      "authorUsername": ""
+    }
+  ],
+  "updatedAt": 1773157360975
+}
