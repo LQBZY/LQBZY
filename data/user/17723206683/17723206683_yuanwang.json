@@ -8,7 +8,16 @@
       "doneDate": "",
       "createdAt": 1773158055927,
       "authorUsername": "17723206683"
+    },
+    {
+      "id": "wish_1773158063355",
+      "index": 2,
+      "name": "一起买套房",
+      "done": false,
+      "doneDate": "",
+      "createdAt": 1773158063355,
+      "authorUsername": "17723206683"
     }
   ],
-  "updatedAt": 1773158069450
+  "updatedAt": 1773158070676
 }
