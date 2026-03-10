@@ -6,5 +6,9 @@
   "avatar": "",
   "createdAt": 1773127522762,
   "partnerUsername": "",
-  "todayMood": null
+  "todayMood": {
+    "key": "kiss",
+    "label": "亲亲",
+    "icon": "😘"
+  }
 }
