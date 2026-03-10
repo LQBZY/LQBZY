@@ -1,8 +1,8 @@
 {
   "tree_state": {
-    "current_water": 80,
+    "current_water": 70,
     "tree_level": 1,
-    "tree_exp": 30,
+    "tree_exp": 40,
     "tasks_completed": {
       "login": {
         "date": "2026-03-10",
@@ -27,5 +27,5 @@
     },
     "last_task_date": "2026-03-10"
   },
-  "updatedAt": 1773149205493
+  "updatedAt": 1773152121441
 }
