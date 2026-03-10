@@ -1,0 +1,14 @@
+{
+  "loveStartDate": "",
+  "partnerBirthday": {
+    "type": "solar",
+    "solar": "",
+    "lunar": {
+      "year": "",
+      "month": "",
+      "day": "",
+      "isLeap": false
+    }
+  },
+  "updatedAt": 1773157715893
+}
