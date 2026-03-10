@@ -1,0 +1,16 @@
+{
+  "tree_state": {
+    "current_water": 0,
+    "tree_level": 1,
+    "tree_exp": 0,
+    "tasks_completed": {
+      "login": {
+        "date": "2026-03-10",
+        "done": true,
+        "claimed": false
+      }
+    },
+    "last_task_date": "2026-03-10"
+  },
+  "updatedAt": 1773157363941
+}
